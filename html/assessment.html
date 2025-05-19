@@ -5,12 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assessment Page</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="../assets/js/papaparse.min.js"></script>
+    <script src="../assets/js/papaparse.min.js">  </script> 
+    <script>
+        function exitTest() {
+            if (confirm('Are you sure you want to quit the test?')) {
+                window.location.href = '../index.html';
+            }
+        }
+    </script>
     <style>
-        body { overflow: hidden; background-color: #f9fafb; font-family: Arial, sans-serif; }
-        .container { max-width: 800px; margin: 40px auto; padding: 20px; background-color: #ffffff; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        body { 
+    overflow: hidden; 
+    background-image: url('../assets/img/bg_assement2.jpg'); 
+    background-size: cover; background-repeat: no-repeat; background-position: center center; font-family: Arial, sans-serif; min-height: 100vh; margin: 0; padding: 0; }
+        .container { max-width: 800px; margin: 40px auto; padding: 20px; background-color: #ffffff; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); overflow-y: auto; max-height: 90vh; }
         .question { font-size: 1.5rem; font-weight: 600; color: #374151; margin-bottom: 20px; }
-        .options button { width: 100%; margin-bottom: 15px; padding: 15px; background-color: #2563eb; color: #ffffff; font-size: 1rem; border-radius: 8px; transition: background-color 0.3s ease; border: none; cursor: pointer; }
+        .options button { width: 100%; margin-bottom: 15px; padding: 15px; background-color: #486196; color: #ffffff; font-size: 1rem; border-radius: 8px; transition: background-color 0.3s ease; border: none; cursor: pointer; }
         .options button:hover { background-color: #1e40af; }
         .timer { font-weight: bold; font-size: 1.2rem; color: #d97706; margin-bottom: 20px; text-align: center; }
         .warning { color: #dc2626; font-weight: bold; margin-top: 20px; text-align: center; }
@@ -18,22 +28,35 @@
         .results { margin-top: 30px; padding: 20px; background-color: #f1f5f9; border-radius: 12px; color: #111827; }
         .results h2 { font-size: 1.8rem; margin-bottom: 15px; color: #16a34a; }
         .results p { font-size: 1.2rem; margin-bottom: 10px; color: #374151; }
-    </style>
+        .summary { margin-top: 20px; padding: 15px; background-color: #fef3c7; border-radius: 12px; color: #92400e; }
+        .summary h3 { font-size: 1.5rem; color: #b45309; margin-bottom: 10px; }
+        .summary p { font-size: 1rem; color: #92400e; margin-bottom: 5px; }
+        .back-button { display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #2563eb; color: #ffffff; border-radius: 8px; text-decoration: none; font-size: 1rem; text-align: center; transition: background-color 0.3s ease; }
+        .back-button:hover { background-color: #1e40af; }
+    .exit-button { display: inline-block; margin-top: 15px; padding: 10px 20px; background-color: #d97878; color: #ffffff; border-radius: 8px; text-decoration: none; font-size: 1rem; text-align: center; transition: background-color 0.3s ease; border: none; cursor: pointer; } .exit-button:hover { background-color: #b91c1c; }
+</style>
 </head>
 <body>
     <div class="container">
         <div id="question" class="question"></div>
+
         <div id="options" class="options"></div>
+<div style="text-align: center;">
+    <button class="exit-button" onclick="exitTest()">Exit Test</button>
+</div>
         <div id="timer" class="timer"></div>
         <div id="warning" class="warning"></div>
         <div id="results" class="results" style="display: none;"></div>
+        <div id="summary" class="summary" style="display: none;"></div>
+        <a href="../index.html" class="back-button" style="display: none;">Back to Home</a>
     </div>
     <script>
         let currentQuestion = 0;
-        let timeRemaining = 60;
+        let timeRemaining = 45;
         let timerInterval;
         let questions = [];
         let correctAnswers = 0;
+        let wrongAnswers = [];
 
         function loadQuestions() {
             Papa.parse('../assets/static/questions.csv', {
@@ -43,7 +66,6 @@
                     questions = results.data.filter(row => row.Question);
                     console.log('Loaded Questions:', questions);
                     showQuestion();
-                    startTimer();
                 },
                 error: function(error) {
                     console.error('CSV Parsing Error:', error);
@@ -57,6 +79,7 @@
                 showResults();
                 return;
             }
+            resetTimer();
             const q = questions[currentQuestion];
             document.getElementById('question').innerText = q.Question;
             const optionsContainer = document.getElementById('options');
@@ -72,6 +95,8 @@
         function checkAnswer(question, selectedOption) {
             if (selectedOption === question.CorrectOption) {
                 correctAnswers++;
+            } else {
+                wrongAnswers.push({ question: question.Question, selected: selectedOption, correct: question.CorrectOption });
             }
             currentQuestion++;
             showQuestion();
@@ -86,11 +111,24 @@
             document.getElementById('question').style.display = 'none';
             document.getElementById('options').style.display = 'none';
             document.getElementById('timer').style.display = 'none';
+            document.querySelector('.back-button').style.display = 'inline-block';
+            showSummary();
         }
 
-        function startTimer() {
+        function showSummary() {
+            const summaryContainer = document.getElementById('summary');
+            if (wrongAnswers.length > 0) {
+                summaryContainer.innerHTML = '<h3>Summary of Incorrect Answers</h3>';
+                wrongAnswers.forEach(item => {
+                    summaryContainer.innerHTML += `<p><strong>Q:</strong> ${item.question} <br><strong>Your Answer:</strong> ${item.selected} <br><strong>Correct Answer:</strong> ${item.correct}</p>`;
+                });
+                summaryContainer.style.display = 'block';
+            }
+        }
+
+        function resetTimer() {
             clearInterval(timerInterval);
-            timeRemaining = 60;
+            timeRemaining = 45;
             document.getElementById('timer').innerText = `Time Remaining: ${timeRemaining}s`;
             timerInterval = setInterval(() => {
                 timeRemaining--;
