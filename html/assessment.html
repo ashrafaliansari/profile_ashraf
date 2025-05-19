@@ -7,25 +7,33 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="../assets/js/papaparse.min.js"></script>
     <style>
-        body { overflow: hidden; }
-        .fullscreen { width: 100vw; height: 100vh; }
-        .warning { color: red; font-weight: bold; }
-        .timer { font-weight: bold; }
-        body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+        body { overflow: hidden; background-color: #f9fafb; font-family: Arial, sans-serif; }
+        .container { max-width: 800px; margin: 40px auto; padding: 20px; background-color: #ffffff; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .question { font-size: 1.5rem; font-weight: 600; color: #374151; margin-bottom: 20px; }
+        .options button { width: 100%; margin-bottom: 15px; padding: 15px; background-color: #2563eb; color: #ffffff; font-size: 1rem; border-radius: 8px; transition: background-color 0.3s ease; border: none; cursor: pointer; }
+        .options button:hover { background-color: #1e40af; }
+        .timer { font-weight: bold; font-size: 1.2rem; color: #d97706; margin-bottom: 20px; text-align: center; }
+        .warning { color: #dc2626; font-weight: bold; margin-top: 20px; text-align: center; }
+        .completed { font-size: 1.5rem; font-weight: bold; color: #16a34a; text-align: center; }
+        .results { margin-top: 30px; padding: 20px; background-color: #f1f5f9; border-radius: 12px; color: #111827; }
+        .results h2 { font-size: 1.8rem; margin-bottom: 15px; color: #16a34a; }
+        .results p { font-size: 1.2rem; margin-bottom: 10px; color: #374151; }
     </style>
 </head>
 <body>
-    <div id="app" class="fullscreen flex flex-col items-center justify-center p-8">
-        <div id="question" class="text-xl mb-4"></div>
-        <div id="options" class="flex flex-col space-y-4"></div>
-        <div id="timer" class="timer mt-4"></div>
-        <div id="warning" class="warning mt-4"></div>
+    <div class="container">
+        <div id="question" class="question"></div>
+        <div id="options" class="options"></div>
+        <div id="timer" class="timer"></div>
+        <div id="warning" class="warning"></div>
+        <div id="results" class="results" style="display: none;"></div>
     </div>
     <script>
         let currentQuestion = 0;
         let timeRemaining = 60;
         let timerInterval;
         let questions = [];
+        let correctAnswers = 0;
 
         function loadQuestions() {
             Papa.parse('../assets/static/questions.csv', {
@@ -45,9 +53,8 @@
 
         function showQuestion() {
             if (currentQuestion >= questions.length) {
-                document.getElementById('question').innerText = 'Test Completed!';
-                document.getElementById('options').innerHTML = '';
-                clearInterval(timerInterval);
+                clearInterval(timerInterval);  // Stop the timer
+                showResults();
                 return;
             }
             const q = questions[currentQuestion];
@@ -56,11 +63,29 @@
             optionsContainer.innerHTML = '';
             ['Option1', 'Option2', 'Option3', 'Option4'].forEach(optionKey => {
                 const btn = document.createElement('button');
-                btn.className = 'bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700';
                 btn.innerText = q[optionKey];
-                btn.onclick = nextQuestion;
+                btn.onclick = () => checkAnswer(q, q[optionKey]);
                 optionsContainer.appendChild(btn);
             });
+        }
+
+        function checkAnswer(question, selectedOption) {
+            if (selectedOption === question.CorrectOption) {
+                correctAnswers++;
+            }
+            currentQuestion++;
+            showQuestion();
+        }
+
+        function showResults() {
+            const resultsContainer = document.getElementById('results');
+            const totalQuestions = questions.length;
+            const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+            resultsContainer.innerHTML = `<h2>Test Completed!</h2><p>You answered ${correctAnswers} out of ${totalQuestions} questions correctly.</p><p>Your score is ${percentage}%.</p>`;
+            resultsContainer.style.display = 'block';
+            document.getElementById('question').style.display = 'none';
+            document.getElementById('options').style.display = 'none';
+            document.getElementById('timer').style.display = 'none';
         }
 
         function startTimer() {
@@ -71,15 +96,10 @@
                 timeRemaining--;
                 document.getElementById('timer').innerText = `Time Remaining: ${timeRemaining}s`;
                 if (timeRemaining <= 0) {
-                    nextQuestion();
+                    currentQuestion++;
+                    showQuestion();
                 }
             }, 1000);
-        }
-
-        function nextQuestion() {
-            currentQuestion++;
-            showQuestion();
-            startTimer();
         }
 
         window.addEventListener('blur', () => {
