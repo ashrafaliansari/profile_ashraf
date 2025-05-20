@@ -15,12 +15,25 @@
     </script>
     <style>
         body { 
-    overflow: hidden; 
-    background-image: url('../assets/img/bg_assement2.jpg'); 
-    background-size: cover; background-repeat: no-repeat; background-position: center center; font-family: Arial, sans-serif; min-height: 100vh; margin: 0; padding: 0; }
+            overflow: hidden; 
+            background-image: url('../assets/img/bg_assement2.jpg'); 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: center center; 
+            font-family: Arial, sans-serif; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 0; 
+        }
+        .options button.selected {
+  background-color: #405498 !important;
+  position: relative;
+  box-shadow: 0 0 10px rgba(3, 11, 38, 0.6);
+}
+
         .container { max-width: 800px; margin: 40px auto; padding: 20px; background-color: #ffffff; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); overflow-y: auto; max-height: 90vh; }
         .question { font-size: 1.5rem; font-weight: 600; color: #374151; margin-bottom: 20px; }
-        .options button { width: 100%; margin-bottom: 15px; padding: 15px; background-color: #486196; color: #ffffff; font-size: 1rem; border-radius: 8px; transition: background-color 0.3s ease; border: none; cursor: pointer; }
+        .options button { width: 100%; margin-bottom: 15px; padding: 15px; background-color: #8098cd; color: #ffffff; font-size: 1rem; border-radius: 8px; transition: background-color 0.3s ease; border: none; cursor: pointer; }
         .options button:hover { background-color: #1e40af; }
         .timer { font-weight: bold; font-size: 1.2rem; color: #d97706; margin-bottom: 20px; text-align: center; }
         .warning { color: #dc2626; font-weight: bold; margin-top: 20px; text-align: center; }
@@ -31,9 +44,21 @@
         .summary { margin-top: 20px; padding: 15px; background-color: #fef3c7; border-radius: 12px; color: #92400e; }
         .summary h3 { font-size: 1.5rem; color: #b45309; margin-bottom: 10px; }
         .summary p { font-size: 1rem; color: #92400e; margin-bottom: 5px; }
-        .back-button { display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #2563eb; color: #ffffff; border-radius: 8px; text-decoration: none; font-size: 1rem; text-align: center; transition: background-color 0.3s ease; }
+        .back-button { display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #4269bd; color: #ffffff; border-radius: 8px; text-decoration: none; font-size: 1rem; text-align: center; transition: background-color 0.3s ease; }
         .back-button:hover { background-color: #1e40af; }
-    .exit-button { display: inline-block; margin-top: 15px; padding: 10px 20px; background-color: #d97878; color: #ffffff; border-radius: 8px; text-decoration: none; font-size: 1rem; text-align: center; transition: background-color 0.3s ease; border: none; cursor: pointer; } .exit-button:hover { background-color: #b91c1c; }
+    .exit-button { display: inline-block; margin-top: 15px; padding: 10px 20px; background-color: #dc2626; color: #ffffff; border-radius: 8px; text-decoration: none; font-size: 1rem; text-align: center; transition: background-color 0.3s ease; border: none; cursor: pointer; } .exit-button:hover { background-color: #b91c1c; }
+    .next-button { display: block; margin: 20px auto; padding: 10px 20px; background-color: #10b981; color: #ffffff; border-radius: 8px; text-decoration: none; font-size: 1rem; text-align: center; transition: background-color 0.3s ease; border: none; cursor: pointer; }
+        .next-button:hover { background-color: #059669; }
+        .options button.selected::after {
+  content: '✓';
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
 </style>
 </head>
 <body>
@@ -41,7 +66,8 @@
         <div id="question" class="question"></div>
 
         <div id="options" class="options"></div>
-<div style="text-align: center;">
+<div style="text-align: center;">    
+    <button id="next-button" class="next-button" onclick="nextQuestion()">Next</button>
     <button class="exit-button" onclick="exitTest()">Exit Test</button>
 </div>
         <div id="timer" class="timer"></div>
@@ -75,11 +101,12 @@
 
         function showQuestion() {
             if (currentQuestion >= questions.length) {
-                clearInterval(timerInterval);  // Stop the timer
+                clearInterval(timerInterval);
                 showResults();
                 return;
             }
             resetTimer();
+            selectedAnswer = null;
             const q = questions[currentQuestion];
             document.getElementById('question').innerText = q.Question;
             const optionsContainer = document.getElementById('options');
@@ -87,9 +114,30 @@
             ['Option1', 'Option2', 'Option3', 'Option4'].forEach(optionKey => {
                 const btn = document.createElement('button');
                 btn.innerText = q[optionKey];
-                btn.onclick = () => checkAnswer(q, q[optionKey]);
+                btn.onclick = () => selectAnswer(btn, q, q[optionKey]);
                 optionsContainer.appendChild(btn);
             });
+        }
+
+        function selectAnswer(button, question, selectedOption) {
+            selectedAnswer = selectedOption;
+            Array.from(document.getElementsByClassName('options')[0].children).forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+        }
+
+        function nextQuestion() {
+            if (selectedAnswer === null) {
+                alert('Please select an answer before proceeding to the next question.');
+                return;
+            }
+            const q = questions[currentQuestion];
+            if (selectedAnswer !== q.CorrectOption) {
+                wrongAnswers.push({ question: q.Question, selected: selectedAnswer, correct: q.CorrectOption });
+            } else {
+                correctAnswers++;
+            }
+            currentQuestion++;
+            showQuestion();
         }
 
         function checkAnswer(question, selectedOption) {
@@ -128,7 +176,7 @@
 
         function resetTimer() {
             clearInterval(timerInterval);
-            timeRemaining = 45;
+            timeRemaining = 60;
             document.getElementById('timer').innerText = `Time Remaining: ${timeRemaining}s`;
             timerInterval = setInterval(() => {
                 timeRemaining--;
