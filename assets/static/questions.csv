@@ -1,11 +1,11 @@
 Question,Option1,Option2,Option3,Option4,CorrectOption
-What will be the output of the following code? `System.out.println(5 + 3);`,8,5 + 3,Error,None,8
-Which method is used to start a thread in Java?,start(),begin(),run(),execute(),start()
-Which of the following is a primitive data type in Java?,Integer,String,boolean,Array,boolean
-Which of the following keywords is used to create an instance of a class?,new,create,instantiate,object,new
-Which collection class does not allow duplicate elements?,ArrayList,HashSet,LinkedList,PriorityQueue,HashSet
-What does the `this` keyword refer to in Java?,Current class,Current object,Parent class,Constructor,Current object
-What is the default value of a `boolean` in Java?,false,true,0,null,false
-Which of the following is used to handle exceptions in Java?,try-catch,throw-catch,catch-finally,throw-try,try-catch
-Which of the following is a method signature in Java?,void method(),method void(),method(),void method;,void method()
-What is the purpose of the `super` keyword in Java?,Access superclass methods,Access current class methods,Access subclass methods,Access static variables,Access superclass methods
+What function is used to read a CSV file into a Pandas DataFrame?,read(),read_csv(),load(),import_data(),read_csv()
+How can you check the data types of columns in a DataFrame?,df.dtypes(),df.types(),df.info(),df.columns(),df.dtypes()
+What method is used to get a quick summary of a DataFrame?,df.info(),df.describe(),df.summary(),df.head(),df.describe()
+Which method is used to remove missing values from a DataFrame?,df.dropna(),df.fillna(),df.remove(),df.clearna(),df.dropna()
+How can you rename a column in a Pandas DataFrame?,df.rename_column(),df.rename(),df.update_column(),df.set_column(),df.rename()
+What is the default index of a Pandas DataFrame?,Integer index starting from 1,Integer index starting from 0,Column names,Random index,Integer index starting from 0
+How can you select the first 5 rows of a DataFrame?,df.first(5),df.head(),df.select(5),df.show(5),df.head()
+What method is used to concatenate two DataFrames along rows?,df.merge(),df.concat(),df.join(),df.combine(),df.concat()
+What function is used to calculate the mean of a column in a DataFrame?,df.mean(),df.average(),df.calc(),df.median(),df.mean()
+How can you apply a function to every element in a DataFrame?,df.apply(),df.map(),df.transform(),df.forEach(),df.apply()
