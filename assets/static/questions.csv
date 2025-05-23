@@ -1,11 +1,11 @@
 Question,Option1,Option2,Option3,Option4,CorrectOption
-What function is used to read a CSV file into a Pandas DataFrame?,read(),read_csv(),load(),import_data(),read_csv()
-How can you check the data types of columns in a DataFrame?,df.dtypes(),df.types(),df.info(),df.columns(),df.dtypes()
-What method is used to get a quick summary of a DataFrame?,df.info(),df.describe(),df.summary(),df.head(),df.describe()
-Which method is used to remove missing values from a DataFrame?,df.dropna(),df.fillna(),df.remove(),df.clearna(),df.dropna()
-How can you rename a column in a Pandas DataFrame?,df.rename_column(),df.rename(),df.update_column(),df.set_column(),df.rename()
-What is the default index of a Pandas DataFrame?,Integer index starting from 1,Integer index starting from 0,Column names,Random index,Integer index starting from 0
-How can you select the first 5 rows of a DataFrame?,df.first(5),df.head(),df.select(5),df.show(5),df.head()
-What method is used to concatenate two DataFrames along rows?,df.merge(),df.concat(),df.join(),df.combine(),df.concat()
-What function is used to calculate the mean of a column in a DataFrame?,df.mean(),df.average(),df.calc(),df.median(),df.mean()
-How can you apply a function to every element in a DataFrame?,df.apply(),df.map(),df.transform(),df.forEach(),df.apply()
+What is the correct SQL statement to create a table?,CREATE TABLE table_name,CREATE table table_name,MAKE TABLE table_name,CREATE table,CREATE TABLE table_name
+Which SQL keyword is used to retrieve unique values?,DISTINCT,UNIQUE,FILTER,REMOVE,DISTINCT
+What SQL statement is used to return all columns from a table?,SELECT * FROM table_name,SHOW ALL FROM table_name,FETCH * FROM table_name,RETURN * FROM table_name,SELECT * FROM table_name
+Which SQL clause is used to filter the records?,WHERE,SELECT,FROM,FILTER,WHERE
+What is the correct SQL syntax to update a record in a table?,UPDATE table_name SET column_name = value WHERE condition,MODIFY table_name SET column_name = value WHERE condition,ALTER table_name SET column_name = value,UPDATE table_name WHERE condition,UPDATE table_name SET column_name = value WHERE condition
+Which SQL function is used to count the number of rows in a table?,COUNT(),SUM(),TOTAL(),ROWS(),COUNT()
+What SQL statement is used to delete data from a table?,DROP,REMOVE,DELETE,DELETE FROM,DELETE FROM
+What does the SQL JOIN operation do?,Combines rows from two or more tables based on a related column,Selects data from one table,Groups data from multiple tables,Filters data across multiple tables,Combines rows from two or more tables based on a related column
+Which SQL clause is used to sort the result set?,ORDER BY,GROUP BY,SORT,SORT BY,ORDER BY
+What is the correct syntax to create a primary key in SQL?,PRIMARY KEY (column_name),KEY (column_name),PRIMARY (column_name),PRIMARY KEY column_name,PRIMARY KEY (column_name)
