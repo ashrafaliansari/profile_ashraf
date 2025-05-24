@@ -1,11 +1,11 @@
 Question,Option1,Option2,Option3,Option4,CorrectOption
-What is the correct SQL statement to create a table?,CREATE TABLE table_name,CREATE table table_name,MAKE TABLE table_name,CREATE table,CREATE TABLE table_name
-Which SQL keyword is used to retrieve unique values?,DISTINCT,UNIQUE,FILTER,REMOVE,DISTINCT
-What SQL statement is used to return all columns from a table?,SELECT * FROM table_name,SHOW ALL FROM table_name,FETCH * FROM table_name,RETURN * FROM table_name,SELECT * FROM table_name
-Which SQL clause is used to filter the records?,WHERE,SELECT,FROM,FILTER,WHERE
-What is the correct SQL syntax to update a record in a table?,UPDATE table_name SET column_name = value WHERE condition,MODIFY table_name SET column_name = value WHERE condition,ALTER table_name SET column_name = value,UPDATE table_name WHERE condition,UPDATE table_name SET column_name = value WHERE condition
-Which SQL function is used to count the number of rows in a table?,COUNT(),SUM(),TOTAL(),ROWS(),COUNT()
-What SQL statement is used to delete data from a table?,DROP,REMOVE,DELETE,DELETE FROM,DELETE FROM
-What does the SQL JOIN operation do?,Combines rows from two or more tables based on a related column,Selects data from one table,Groups data from multiple tables,Filters data across multiple tables,Combines rows from two or more tables based on a related column
-Which SQL clause is used to sort the result set?,ORDER BY,GROUP BY,SORT,SORT BY,ORDER BY
-What is the correct syntax to create a primary key in SQL?,PRIMARY KEY (column_name),KEY (column_name),PRIMARY (column_name),PRIMARY KEY column_name,PRIMARY KEY (column_name)
+What is the measure of central tendency that represents the middle value in a sorted dataset?,Mean,Median,Mode,Range,Median
+Which of the following is used to measure the spread or dispersion of a dataset?,Mean,Median,Variance,Mode,Variance
+What is the term for the difference between the highest and lowest values in a dataset?,Range,Variance,Standard Deviation,Interquartile Range,Range
+What is the statistical measure that represents the average of a set of values?,Mean,Median,Mode,Standard Deviation,Mean
+Which of the following is the correct formula for the variance of a dataset?,Sum of squared differences from the mean divided by N,Sum of squared differences from the median divided by N-1,Sum of squared differences from the mode,Sum of absolute differences from the mean,Sum of squared differences from the mean divided by N
+What is the probability distribution that is used to model the number of successes in a fixed number of trials?,Normal Distribution,Binomial Distribution,Poisson Distribution,Exponential Distribution,Binomial Distribution
+Which test is commonly used to check if a dataset follows a normal distribution?,t-test,Chi-Square Test,Shapiro-Wilk Test,F-test,Shapiro-Wilk Test
+What is the term for the relationship between two variables in a dataset?,Correlation,Regression,Outlier,Skewness,Correlation
+What does a p-value of 0.05 typically indicate in hypothesis testing?,The null hypothesis is true,There is a 5% chance the result is due to random chance,The alternative hypothesis is true,The sample size is too small,There is a 5% chance the result is due to random chance
+Which of the following is a method to identify and handle outliers in a dataset?,Boxplot,Histogram,Scatter plot,Line plot,Boxplot
