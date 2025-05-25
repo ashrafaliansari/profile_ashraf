@@ -1,11 +1,11 @@
 Question,Option1,Option2,Option3,Option4,CorrectOption
-What is the measure of central tendency that represents the middle value in a sorted dataset?,Mean,Median,Mode,Range,Median
-Which of the following is used to measure the spread or dispersion of a dataset?,Mean,Median,Variance,Mode,Variance
-What is the term for the difference between the highest and lowest values in a dataset?,Range,Variance,Standard Deviation,Interquartile Range,Range
-What is the statistical measure that represents the average of a set of values?,Mean,Median,Mode,Standard Deviation,Mean
-Which of the following is the correct formula for the variance of a dataset?,Sum of squared differences from the mean divided by N,Sum of squared differences from the median divided by N-1,Sum of squared differences from the mode,Sum of absolute differences from the mean,Sum of squared differences from the mean divided by N
-What is the probability distribution that is used to model the number of successes in a fixed number of trials?,Normal Distribution,Binomial Distribution,Poisson Distribution,Exponential Distribution,Binomial Distribution
-Which test is commonly used to check if a dataset follows a normal distribution?,t-test,Chi-Square Test,Shapiro-Wilk Test,F-test,Shapiro-Wilk Test
-What is the term for the relationship between two variables in a dataset?,Correlation,Regression,Outlier,Skewness,Correlation
-What does a p-value of 0.05 typically indicate in hypothesis testing?,The null hypothesis is true,There is a 5% chance the result is due to random chance,The alternative hypothesis is true,The sample size is too small,There is a 5% chance the result is due to random chance
-Which of the following is a method to identify and handle outliers in a dataset?,Boxplot,Histogram,Scatter plot,Line plot,Boxplot
+What is the output of `print(2 ** 3)`?,6,8,4,9,8
+Which of the following methods is used to add an item to the end of a list in Python?,append(),insert(),extend(),add(),append()
+What will `len('hello')` return?,5,4,6,7,5
+What is the correct syntax to create a lambda function that adds two numbers in Python?,lambda x, y: x + y,lambda (x, y): x + y,lambda x, y => x + y,function(x, y): x + y,lambda x, y: x + y
+Which of the following will raise a `TypeError` in Python?,x = '5' + 5,x = '5' + '5',x = 5 + 5,x = 5 * '5',x = '5' + 5
+What does the `zip()` function do in Python?,Combines two or more iterables element-wise into a tuple,Returns the sum of iterables,Combines two lists into one,Creates a copy of the iterable,Combines two or more iterables element-wise into a tuple
+Which method is used to convert a string to lowercase in Python?,lower(),tolower(),toLowerCase(),convert(),lower()
+What will be the output of `print(3 > 2 > 1)`?,True,False,Error,None,True
+How can you get the memory address of an object in Python?,id(),address(),location(),memory(),id()
+What will be the result of `print([] == [])`?,True,False,Error,None,True
