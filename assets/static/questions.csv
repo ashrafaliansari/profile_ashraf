@@ -1,11 +1,11 @@
 Question,Option1,Option2,Option3,Option4,CorrectOption
-What is the output of `print(2 ** 3)`?,6,8,4,9,8
-Which of the following methods is used to add an item to the end of a list in Python?,append(),insert(),extend(),add(),append()
-What will `len('hello')` return?,5,4,6,7,5
-What is the correct syntax to create a lambda function that adds two numbers in Python?,lambda x, y: x + y,lambda (x, y): x + y,lambda x, y => x + y,function(x, y): x + y,lambda x, y: x + y
-Which of the following will raise a `TypeError` in Python?,x = '5' + 5,x = '5' + '5',x = 5 + 5,x = 5 * '5',x = '5' + 5
-What does the `zip()` function do in Python?,Combines two or more iterables element-wise into a tuple,Returns the sum of iterables,Combines two lists into one,Creates a copy of the iterable,Combines two or more iterables element-wise into a tuple
-Which method is used to convert a string to lowercase in Python?,lower(),tolower(),toLowerCase(),convert(),lower()
-What will be the output of `print(3 > 2 > 1)`?,True,False,Error,None,True
-How can you get the memory address of an object in Python?,id(),address(),location(),memory(),id()
-What will be the result of `print([] == [])`?,True,False,Error,None,True
+Which function is used to read data from an Excel file in Pandas?,read_excel(),read_csv(),read_json(),read_html(),read_excel()
+What will `df.iloc[0:3, 1:4]` do in Pandas?,Select rows from index 0 to 2 and columns from index 1 to 3,Select rows from index 0 to 3 and columns from index 1 to 4,Select rows from index 1 to 3 and columns from index 0 to 4,Select all rows and columns from index 1 to 3,Select rows from index 0 to 2 and columns from index 1 to 3
+What does the `dropna()` method do in Pandas?,Remove rows with missing data,Replace missing data with zero,Remove duplicates,Fill missing data,Remove rows with missing data
+How can you select rows from a DataFrame where a column value is greater than a specified value?,df[df['col'] > value],df.select(df['col'] > value),df[df['col'] < value],df.select_rows(df['col'] > value),df[df['col'] > value]
+Which method is used to merge two DataFrames in Pandas?,merge(),concat(),join(),append(),merge()
+How can you check for missing data in a Pandas DataFrame?,df.isna(),df.isnull(),df.isempty(),df.notna(),df.isna()
+What is the function used to calculate the mean of each column in a DataFrame?,df.mean(),df.average(),df.sum(),df.median(),df.mean()
+How can you change the column names of a Pandas DataFrame?,df.columns = ['new_name1', 'new_name2'],df.rename(columns = {'old_name': 'new_name'}),df.set_column_names(['new_name1', 'new_name2']),df.columns.rename(['new_name1', 'new_name2']),df.columns = ['new_name1', 'new_name2']
+What does `df.groupby('column_name').agg('sum')` do?,Group the DataFrame by a column and calculate the sum for each group,Group the DataFrame by a column and calculate the mean for each group,Group the DataFrame by a column and calculate the count for each group,Group the DataFrame by a column and calculate the maximum for each group,Group the DataFrame by a column and calculate the sum for each group
+What function is used to concatenate two Pandas DataFrames along the columns axis?,concat(),merge(),append(),join(),concat()
