@@ -6,6 +6,5 @@ Which of the following is the correct way to create a thread in Java?,Thread t =
 What does the `static` keyword indicate in Java?,The method can be called without creating an instance of the class,The method can be overridden,The method is final,The method is synchronized,The method can be called without creating an instance of the class
 What is the size of a `float` data type in Java?,4 bytes,8 bytes,16 bytes,2 bytes,4 bytes
 Which method is used to compare two strings for equality in Java?,compare(),equals(),compareTo(),==,equals()
-What will be the output of the following code? `System.out.println(10 + 20 + "30");`,102030,3030,30,1020,102030
 Which of the following statements is true about Java constructors?,Constructors are called explicitly,Constructors are used to initialize objects,Constructors cannot be overloaded,Constructors have no return type,Constructors are used to initialize objects
 Which of the following statements about inheritance in Java is true?,Java supports multiple inheritance through classes,Java supports multiple inheritance through interfaces,Java doesn't support inheritance,Java only supports single inheritance,Java supports multiple inheritance through interfaces
