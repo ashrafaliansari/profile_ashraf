@@ -1,10 +1,10 @@
 Question,Option1,Option2,Option3,Option4,CorrectOption
-What is the default value of an instance variable of type int in Java?,0,1,null,undefined,0
-Which of the following is the correct syntax to declare a constructor in Java?,public void MyClass(),public MyClass(),MyClass(){},void MyClass(),public MyClass()
-Which of the following data types are not primitive in Java?,int,boolean,String,byte,String
-Which of the following is the correct way to create a thread in Java?,Thread t = new Thread();,Thread t = new Thread(Runnable r);,Thread t = new MyThread();,Thread t = new Thread(new Runnable()),Thread t = new Thread(new Runnable())
-What does the `static` keyword indicate in Java?,The method can be called without creating an instance of the class,The method can be overridden,The method is final,The method is synchronized,The method can be called without creating an instance of the class
-What is the size of a `float` data type in Java?,4 bytes,8 bytes,16 bytes,2 bytes,4 bytes
-Which method is used to compare two strings for equality in Java?,compare(),equals(),compareTo(),==,equals()
-Which of the following statements is true about Java constructors?,Constructors are called explicitly,Constructors are used to initialize objects,Constructors cannot be overloaded,Constructors have no return type,Constructors are used to initialize objects
-Which of the following statements about inheritance in Java is true?,Java supports multiple inheritance through classes,Java supports multiple inheritance through interfaces,Java doesn't support inheritance,Java only supports single inheritance,Java supports multiple inheritance through interfaces
+What is the output of `print(3 ** 2)`?,9,6,27,33,9
+Which of the following is used to create an empty set in Python?,set(),{},[],(),set()
+What is the correct syntax to create a function in Python?,def function_name(),function function_name(),create function_name(),def function_name:,def function_name()
+What is the result of `len('hello')` in Python?,5,4,6,7,5
+Which of the following is a mutable data type in Python?,list,string,tuple,dict,list
+What is the default return value of a Python function that doesn't have a return statement?,None,False,0,Null,None
+Which operator is used for exponentiation in Python?,^,**,%,//,**
+What is the result of `True + 1` in Python?,1,True,2,Error,2
+How can you check the data type of a variable in Python?,type(variable),isinstance(variable),checktype(variable),data_type(variable),type(variable)
