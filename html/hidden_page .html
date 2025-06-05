@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Protected Assessment</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <script src="../assets/js/papaparse.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('../assets/img/bg_assement2.jpg');
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #ffffffcc;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .hidden { display: none; }
+    .button { padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+    .btn-blue { background-color: #2563eb; color: white; }
+    .btn-blue:hover { background-color: #1e40af; }
+    .error { color: #dc2626; margin-top: 10px; text-align: center; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="password-section">
+      <h2 class="text-xl font-bold mb-4 text-center">Enter Password to Start Assessment</h2>
+      <div class="flex flex-col items-center">
+        <input type="password" id="password-input" class="border p-2 rounded w-full mb-4" placeholder="Enter password" />
+        <button onclick="checkPassword()" class="button btn-blue">Start</button>
+        <div id="error-message" class="error hidden">Incorrect password. Please try again.</div>
+      </div>
+    </div>
+
+    <div id="assessment-section" class="hidden mt-8">
+      <div id="question" class="text-xl mb-4 font-semibold text-gray-800"></div>
+      <div id="options" class="flex flex-col space-y-4"></div>
+      <button id="next-button" class="button btn-blue mt-4" onclick="nextQuestion()">Next</button>
+      <div id="timer" class="text-center mt-4 font-bold text-yellow-600"></div>
+      <div id="warning" class="text-center text-red-500 mt-4 font-bold"></div>
+      <div id="results" class="mt-6 p-4 bg-gray-100 rounded hidden"></div>
+      <div id="summary" class="mt-6 p-4 bg-yellow-100 rounded hidden"></div>
+      <a href="../index.html" class="button btn-blue mt-6 block text-center hidden" id="back-button">Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+    const correctPassword = "ashraf123";
+    let currentQuestion = 0;
+    let timeRemaining = 45;
+    let timerInterval;
+    let questions = [];
+    let correctAnswers = 0;
+    let wrongAnswers = [];
+    let selectedAnswer = null;
+
+    function checkPassword() {
+      const input = document.getElementById("password-input").value;
+      if (input === correctPassword) {
+        document.getElementById("password-section").classList.add("hidden");
+        document.getElementById("assessment-section").classList.remove("hidden");
+        loadQuestions();
+      } else {
+        document.getElementById("error-message").classList.remove("hidden");
+      }
+    }
+
+    function loadQuestions() {
+      Papa.parse('../assets/static/questions.csv', {
+        download: true,
+        header: true,
+        complete: function(results) {
+          questions = results.data.filter(row => row.Question);
+          showQuestion();
+        }
+      });
+    }
+
+    function showQuestion() {
+      if (currentQuestion >= questions.length) {
+        clearInterval(timerInterval);
+        showResults();
+        return;
+      }
+      resetTimer();
+      selectedAnswer = null;
+      const q = questions[currentQuestion];
+      document.getElementById('question').innerText = q.Question;
+      const optionsContainer = document.getElementById('options');
+      optionsContainer.innerHTML = '';
+      ['Option1', 'Option2', 'Option3', 'Option4'].forEach(optionKey => {
+        const btn = document.createElement('button');
+        btn.innerText = q[optionKey];
+        btn.className = 'button bg-blue-500 text-white rounded p-2 hover:bg-blue-700';
+        btn.onclick = () => selectAnswer(btn, q, q[optionKey]);
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(button, question, selectedOption) {
+      selectedAnswer = selectedOption;
+      Array.from(document.getElementById('options').children).forEach(btn => btn.classList.remove('bg-blue-700'));
+      button.classList.add('bg-blue-700');
+    }
+
+    function nextQuestion() {
+      if (selectedAnswer === null) {
+        alert("Please select an answer before continuing.");
+        return;
+      }
+      const q = questions[currentQuestion];
+      if (selectedAnswer === q.CorrectOption) {
+        correctAnswers++;
+      } else {
+        wrongAnswers.push({ question: q.Question, selected: selectedAnswer, correct: q.CorrectOption });
+      }
+      currentQuestion++;
+      showQuestion();
+    }
+
+    function showResults() {
+      document.getElementById('question').style.display = 'none';
+      document.getElementById('options').style.display = 'none';
+      document.getElementById('timer').style.display = 'none';
+      document.getElementById('next-button').style.display = 'none';
+
+      const results = document.getElementById('results');
+      const total = questions.length;
+      const score = Math.round((correctAnswers / total) * 100);
+      results.innerHTML = `<h2 class="text-green-600 text-2xl font-bold mb-4">Test Completed!</h2>
+        <p>You answered ${correctAnswers} out of ${total} correctly.</p>
+        <p>Your score is ${score}%.</p>`;
+      results.classList.remove('hidden');
+
+      const summary = document.getElementById('summary');
+      if (wrongAnswers.length > 0) {
+        summary.innerHTML = `<h3 class="text-xl font-semibold text-yellow-700 mb-2">Summary of Incorrect Answers</h3>`;
+        wrongAnswers.forEach(item => {
+          summary.innerHTML += `<p><strong>Q:</strong> ${item.question}<br><strong>Your Answer:</strong> ${item.selected}<br><strong>Correct Answer:</strong> ${item.correct}</p><hr>`;
+        });
+        summary.classList.remove('hidden');
+      }
+
+      document.getElementById('back-button').classList.remove('hidden');
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      timeRemaining = 45;
+      document.getElementById('timer').innerText = `Time Remaining: ${timeRemaining}s`;
+      timerInterval = setInterval(() => {
+        timeRemaining--;
+        document.getElementById('timer').innerText = `Time Remaining: ${timeRemaining}s`;
+        if (timeRemaining <= 0) {
+          alert('Time is up!');
+          nextQuestion();
+        }
+      }, 1000);
+    }
+
+    window.addEventListener('blur', () => {
+      document.getElementById('warning').innerText = '⚠️ Do not switch tabs during the test!';
+    });
+
+    window.addEventListener('focus', () => {
+      document.getElementById('warning').innerText = '';
+    });
+  </script>
+</body>
+</html>
