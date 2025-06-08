@@ -1,10 +1,11 @@
 Question,Option1,Option2,Option3,Option4,CorrectOption
-What is the default value of an instance variable of type `int` in Java?,0,1,null,undefined,0
-Which of the following is the correct way to declare a constructor in Java?,public void MyClass(),public MyClass(),MyClass(){},void MyClass(),public MyClass()
-What does the `static` keyword indicate in Java?,The method can be called without creating an instance of the class,The method can be overridden,The method is final,The method is synchronized,The method can be called without creating an instance of the class
-What is the result of `5 / 2` in Java?,2,2.5,3,0,2
-Which of the following is used to terminate a loop in Java?,break,continue,return,exit,break
-What is the size of a `char` data type in Java?,2 bytes,4 bytes,8 bytes,1 byte,2 bytes
-Which keyword is used to inherit a class in Java?,extend,implements,inherit,extends,extends
-What is the purpose of the `super` keyword in Java?,It refers to the immediate parent class,It refers to the object of the current class,It refers to the current class,It is used to call a method in the parent class,It refers to the immediate parent class
-Which of the following is a wrapper class in Java?,int,boolean,String,Integer,Integer
+What is the output of `print(2 ** 3)`?,6,8,4,9,8
+Which of the following is used to create an empty set in Python?,"set()","{}","[]","()",set()
+What is the correct syntax to create a function in Python?,"def function_name()","function function_name()","create function_name()","def function_name:",def function_name()
+Which of the following will raise an `IndexError` in Python?,"lst = [1, 2, 3]; print(lst[5])","lst = [1, 2, 3]; print(lst[1])","lst = [1, 2, 3]; print(lst[0])","lst = [1, 2, 3]; print(lst[2])","lst = [1, 2, 3]; print(lst[5])"
+What is the result of `len('hello')` in Python?,5,4,6,7,5
+Which of the following is a mutable data type in Python?,"list","string","tuple","dict",list
+What is the default return value of a Python function that doesn't have a return statement?,"None","False","0","Null",None
+Which operator is used for exponentiation in Python?,"^","**","%","//","**"
+What is the result of `True + 1` in Python?,1,True,2,Error,2
+How can you check the data type of a variable in Python?,"type(variable)","isinstance(variable)","checktype(variable)","data_type(variable)",type(variable)
