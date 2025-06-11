@@ -1,11 +1,11 @@
 Question,Option1,Option2,Option3,Option4,CorrectOption
-What is the output of `print(2 ** 3)`?,6,8,4,9,8
-Which of the following is used to create an empty set in Python?,"set()","{}","[]","()",set()
-What is the correct syntax to create a function in Python?,"def function_name()","function function_name()","create function_name()","def function_name:",def function_name()
-Which of the following will raise an `IndexError` in Python?,"lst = [1, 2, 3]; print(lst[5])","lst = [1, 2, 3]; print(lst[1])","lst = [1, 2, 3]; print(lst[0])","lst = [1, 2, 3]; print(lst[2])","lst = [1, 2, 3]; print(lst[5])"
-What is the result of `len('hello')` in Python?,5,4,6,7,5
-Which of the following is a mutable data type in Python?,"list","string","tuple","dict",list
-What is the default return value of a Python function that doesn't have a return statement?,"None","False","0","Null",None
-Which operator is used for exponentiation in Python?,"^","**","%","//","**"
-What is the result of `True + 1` in Python?,1,True,2,Error,2
-How can you check the data type of a variable in Python?,"type(variable)","isinstance(variable)","checktype(variable)","data_type(variable)",type(variable)
+What is the primary data structure in pandas?,"Series","DataFrame","Array","Dictionary",DataFrame
+How do you import pandas in a Python script?,"import pandas","include pandas","import pandas as pd","load pandas","import pandas as pd"
+Which method is used to read a CSV file in pandas?,"read_file()","read_csv()","load_csv()","import_csv()","read_csv()"
+What does `df.head()` do in pandas?,"Returns the last 5 rows","Deletes the first 5 rows","Returns the first 5 rows","Returns column names","Returns the first 5 rows"
+Which pandas method gives summary statistics of a DataFrame?,"summary()","info()","describe()","stats()","describe()"
+How do you select a column named "Age" from a DataFrame `df`?,"df.select('Age')","df['Age']","df.get('Age')","df.column('Age')","df['Age']"
+What does `df.isnull()` return?,"Rows with nulls","A DataFrame of True/False for nulls","Only null values","An error","A DataFrame of True/False for nulls"
+How do you drop missing values in a DataFrame?,"df.remove_null()","df.dropna()","df.delete_na()","df.drop_null()","df.dropna()"
+Which method is used to concatenate two DataFrames vertically?,"pd.merge()","pd.append()","pd.concat()","pd.combine()","pd.concat()"
+What does `df.shape` return?,"Size of memory","List of column names","Tuple of (rows, columns)","Data type of each column","Tuple of (rows, columns)"
